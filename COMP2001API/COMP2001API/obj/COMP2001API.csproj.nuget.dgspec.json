@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "W:\\University\\Lecture notes\\COMP2001\\COMP2001API\\COMP2001API\\COMP2001API.csproj": {}
+    "W:\\University\\Lecture notes\\COMP2001\\COMP2001_Main_Assignment\\COMP2001API\\COMP2001API\\COMP2001API.csproj": {}
   },
   "projects": {
-    "W:\\University\\Lecture notes\\COMP2001\\COMP2001API\\COMP2001API\\COMP2001API.csproj": {
+    "W:\\University\\Lecture notes\\COMP2001\\COMP2001_Main_Assignment\\COMP2001API\\COMP2001API\\COMP2001API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "W:\\University\\Lecture notes\\COMP2001\\COMP2001API\\COMP2001API\\COMP2001API.csproj",
+        "projectUniqueName": "W:\\University\\Lecture notes\\COMP2001\\COMP2001_Main_Assignment\\COMP2001API\\COMP2001API\\COMP2001API.csproj",
         "projectName": "COMP2001API",
-        "projectPath": "W:\\University\\Lecture notes\\COMP2001\\COMP2001API\\COMP2001API\\COMP2001API.csproj",
+        "projectPath": "W:\\University\\Lecture notes\\COMP2001\\COMP2001_Main_Assignment\\COMP2001API\\COMP2001API\\COMP2001API.csproj",
         "packagesPath": "C:\\Users\\Reece\\.nuget\\packages\\",
-        "outputPath": "W:\\University\\Lecture notes\\COMP2001\\COMP2001API\\COMP2001API\\obj\\",
+        "outputPath": "W:\\University\\Lecture notes\\COMP2001\\COMP2001_Main_Assignment\\COMP2001API\\COMP2001API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Reece\\AppData\\Roaming\\NuGet\\NuGet.Config",

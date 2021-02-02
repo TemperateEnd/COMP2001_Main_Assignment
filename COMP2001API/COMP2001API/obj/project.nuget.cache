@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6TIz+gRndenxAH+GBywOkDWIXt2A9BR1QLfZ02+ODPm9eN18Rpi5LifxynjusmeDnl2nIotpBtQkZsohofEbZA==",
+  "dgSpecHash": "lmNEjW2sm3wrLJmUHTKRYrrF2cK1LSf0B7hE7HdEvMrQMkt/L/yYbO+IBYQy1OPmtXdUuaBr/riekgWiput3NA==",
   "success": true,
-  "projectFilePath": "W:\\University\\Lecture notes\\COMP2001\\COMP2001API\\COMP2001API\\COMP2001API.csproj",
+  "projectFilePath": "W:\\University\\Lecture notes\\COMP2001\\COMP2001_Main_Assignment\\COMP2001API\\COMP2001API\\COMP2001API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Reece\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\Reece\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

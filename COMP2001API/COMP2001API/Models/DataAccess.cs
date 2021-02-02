@@ -111,10 +111,46 @@ namespace COMP2001API.Models
 
         public bool Validate (UsersTable user)
         {
-            Database.ExecuteSqlRaw("EXEC ValidateUSER @Email, @Password",
+            Database.ExecuteSqlRaw("EXEC ValidateUser @Email, @Password",
                 new SqlParameter("@Email", user.EmailAddress),
                 new SqlParameter("@Password", user.UserPassword));
             return true;
+        }
+
+        public void Register(UsersTable user, out string OUTPUT)
+        {
+            SqlParameter parameter = new SqlParameter();
+            parameter.ParameterName = "@ResponseMessage";
+            parameter.IsNullable = true;
+            parameter.SqlDbType = System.Data.SqlDbType.VarChar;
+            parameter.Direction = System.Data.ParameterDirection.Output;
+            parameter.Size = 50;
+
+            Database.ExecuteSqlRaw("EXEC Register @FirstName, @LastName, @Email, @Password",
+                new SqlParameter("@FirstName", user.FirstName),
+                new SqlParameter("@LastName", user.LastName),
+                new SqlParameter("@Email", user.EmailAddress),
+                new SqlParameter("@Password", user.UserPassword),
+                parameter);
+
+            OUTPUT = parameter.Value.ToString();
+        }
+
+        public void Update(UsersTable user, int userID)
+        {
+            Database.ExecuteSqlRaw("EXEC UpdateUser @FirstName, @LastName, @Email, @Password, @UserID",
+                new SqlParameter("@FirstName", user.FirstName),
+                new SqlParameter("@LastName", user.LastName),
+                new SqlParameter("@Email", user.EmailAddress),
+                new SqlParameter("@Password", user.UserPassword),
+                new SqlParameter("@UserID", user.UserId)
+                );
+        }
+
+        public void Delete(int UserID)
+        {
+            Database.ExecuteSqlRaw("EXEC DeleteUser @UserID",
+                new SqlParameter("@UserID", UserID));
         }
     }
 }
