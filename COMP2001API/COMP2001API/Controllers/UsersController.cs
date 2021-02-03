@@ -106,15 +106,67 @@ namespace COMP2001API.Controllers
             return _context.UsersTables.Any(e => e.UserId == id);
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<UsersTable>>> GetUsers()
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<IEnumerable<UsersTable>>> Delete (int UserID)
         {
-            return;
+            _context.Delete(UserID);
+
+            return StatusCode(200);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<IEnumerable<UsersTable>>> Post(UsersTable user)
+        {
+            string responseString;
+
+            register(user, responseString);
+            
+            if(responseString.Contains("200"))
+            {
+                return Ok(user);
+            }
+
+            else
+            {
+                return StatusCode(208);
+            }
+        }
+
+        [HttpPut("{id}")]
+
+        public async Task<ActionResult<IEnumerable<UsersTable>>> Put (UsersTable user)
+        {
+            _context.Update(user);
+
+            return StatusCode(200);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<IEnumerable<UsersTable>>> Get(UsersTable user)
+        {
+            getValidation(user);
+
+            if(getValidation(user) == true)
+            {
+                return Ok(user);
+            }
+           
+
+            else
+            {
+                return StatusCode(208);
+            }
+        }
+
+        public void register(UsersTable user, out string httpResponse)
+        {
+            _context.Register(user, out httpResponse);
         }
 
         public bool getValidation(UsersTable user)
         {
-           return _context.Validate(user);
+            return _context.Validate(user);
+
         }
     }
 }
