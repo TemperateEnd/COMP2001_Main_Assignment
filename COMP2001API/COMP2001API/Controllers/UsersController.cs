@@ -109,7 +109,7 @@ namespace COMP2001API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UsersTable>>> GetUsers()
         {
-            return _context.Validate(user);
+            return;
         }
 
         public bool getValidation(UsersTable user)
