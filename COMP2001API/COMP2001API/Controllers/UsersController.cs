@@ -119,7 +119,7 @@ namespace COMP2001API.Controllers
         {
             string responseString;
 
-            register(user, responseString);
+            register(user, out responseString);
             
             if(responseString.Contains("200"))
             {
