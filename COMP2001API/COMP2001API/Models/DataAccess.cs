@@ -111,10 +111,24 @@ namespace COMP2001API.Models
 
         public bool Validate (UsersTable user)
         {
-            Database.ExecuteSqlRaw("EXEC ValidateUser @Email, @Password",
+            SqlParameter p = new SqlParameter("valueToReturn", System.Data.SqlDbType.Int, 128);
+            p.Direction = System.Data.ParameterDirection.Output;
+
+            Database.ExecuteSqlRaw("EXEC @valueToReturn = ValidateUser @Email, @Password",
+                p,
                 new SqlParameter("@Email", user.EmailAddress),
                 new SqlParameter("@Password", user.UserPassword));
-            return true;
+
+
+            if (Convert.ToInt32(p.Value) == 0)
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
         }
 
         public void Register(UsersTable user, out string OUTPUT)
@@ -126,7 +140,7 @@ namespace COMP2001API.Models
             parameter.Direction = System.Data.ParameterDirection.Output;
             parameter.Size = 50;
 
-            Database.ExecuteSqlRaw("EXEC Register @FirstName, @LastName, @Email, @Password",
+            Database.ExecuteSqlRaw("EXEC Register @FirstName, @LastName, @Email, @Password, @ResponseMessage OUTPUT",  
                 new SqlParameter("@FirstName", user.FirstName),
                 new SqlParameter("@LastName", user.LastName),
                 new SqlParameter("@Email", user.EmailAddress),

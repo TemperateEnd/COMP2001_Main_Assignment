@@ -9,8 +9,8 @@ using COMP2001API.Models;
 
 namespace COMP2001API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/user")]
     public class UsersController : ControllerBase
     {
         private readonly DataAccess _context;
@@ -21,143 +21,61 @@ namespace COMP2001API.Controllers
         }
 
         // GET: api/Users
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<UsersTable>>> GetUsersTables()
-        {
-            return await _context.UsersTables.ToListAsync();
-        }
-
-        // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<UsersTable>> GetUsersTable(int id)
+        public async Task<IActionResult> Get(UsersTable user)
         {
-            var usersTable = await _context.UsersTables.FindAsync(id);
 
-            if (usersTable == null)
+            bool p1 = getValidation(user);
+
+            if (p1)
             {
-                return NotFound();
+                return Ok(true);
             }
-
-            return usersTable;
-        }
-
-        // PUT: api/Users/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsersTable(int id, UsersTable usersTable)
-        {
-            if (id != usersTable.UserId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(usersTable).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UsersTableExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Users
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public async Task<ActionResult<UsersTable>> PostUsersTable(UsersTable usersTable)
-        {
-            _context.UsersTables.Add(usersTable);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetUsersTable", new { id = usersTable.UserId }, usersTable);
-        }
-
-        // DELETE: api/Users/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<UsersTable>> DeleteUsersTable(int id)
-        {
-            var usersTable = await _context.UsersTables.FindAsync(id);
-            if (usersTable == null)
-            {
-                return NotFound();
-            }
-
-            _context.UsersTables.Remove(usersTable);
-            await _context.SaveChangesAsync();
-
-            return usersTable;
-        }
-
-        private bool UsersTableExists(int id)
-        {
-            return _context.UsersTables.Any(e => e.UserId == id);
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<IEnumerable<UsersTable>>> Delete (int UserID)
-        {
-            _context.Delete(UserID);
-
-            return StatusCode(200);
-        }
-
-        [HttpPost]
-        public async Task<ActionResult<IEnumerable<UsersTable>>> Post(UsersTable user)
-        {
-            string responseString;
-
-            register(user, out responseString);
-            
-            if(responseString.Contains("200"))
-            {
-                return Ok(user);
-            }
-
             else
             {
                 return StatusCode(208);
             }
         }
 
+        // PUT: api/Users/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-
-        public async Task<ActionResult<IEnumerable<UsersTable>>> Put (UsersTable user)
+        public async Task<IActionResult> Update(UsersTable user)
         {
             _context.Update(user);
 
             return StatusCode(200);
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<IEnumerable<UsersTable>>> Get(UsersTable user)
-        {
-            getValidation(user);
 
-            if(getValidation(user) == true)
+        // POST: api/Users
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        public async Task<IActionResult> Post(UsersTable user)
+        {
+            string Responce;
+            
+            register(user, out Responce);
+
+            if (Responce.Contains("200"))
             {
                 return Ok(user);
             }
-           
-
             else
             {
                 return StatusCode(208);
             }
         }
 
+        // DELETE: api/Users/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            _context.Delete(id);
+            return StatusCode(200);
+        }
+
+        [NonAction]
         public void register(UsersTable user, out string httpResponse)
         {
             _context.Register(user, out httpResponse);
@@ -166,7 +84,12 @@ namespace COMP2001API.Controllers
         public bool getValidation(UsersTable user)
         {
             return _context.Validate(user);
-
         }
+
+        private bool UserExists(int id)
+        {
+            return _context.UsersTables.Any(e => e.UserId == id);
+        }
+
     }
 }
