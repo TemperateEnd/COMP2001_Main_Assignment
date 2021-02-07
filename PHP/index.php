@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title> RTarrant COMP2001 Site - Data </title>
+    <title> RTarrant COMP2001 Site - Index </title>
     <style>
         table {
             margin: 0 auto;
@@ -39,6 +39,9 @@
 <body>
 <h1> RTarrant COMP2001 Site </h1>
 <h2> Index page </h2>
+
+    <h3> Project Vision</h3>
+    <p> This web application was created so that people can view data on alcohol consumption across Plymouth.</p>
     <li><a href ="data.php"> View Data </a></li>
     <li><a href = "dataset.csv"> Original dataset </a></li>
     </body>
